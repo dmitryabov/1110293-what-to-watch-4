@@ -15,7 +15,6 @@ const App = (props) => {
   );
 };
 
-
 App.propTypes = {
   movieName: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
