@@ -16,7 +16,7 @@ const Movie = {
 const movieNames = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `The Man Called Flintstone`,
   `Casper the Friendly Ghost`, `Peppa Pig`, `Aladdin`, `Finding Nemo`, `Toy Story`];
 
-it(`Should welcome button be pressed`, () => {
+it(`Click on movie title`, () => {
   const onMovieCardTitleButtonHandler = jest.fn();
 
   const welcomeScreen = shallow(
