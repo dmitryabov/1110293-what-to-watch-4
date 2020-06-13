@@ -2,6 +2,7 @@ import React from "react";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import PropTypes from "prop-types";
 
+const movieCardTitleButtonHandler = () => {};
 
 const App = (props) => {
   const {movieName, genre, year, movieNames} = props;
@@ -11,6 +12,7 @@ const App = (props) => {
       genre={genre}
       year={year}
       movieNames={movieNames}
+      onMovieCardTitleButtonHandler={movieCardTitleButtonHandler}
     />
   );
 };

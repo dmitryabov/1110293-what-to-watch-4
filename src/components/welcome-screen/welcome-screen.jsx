@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 
 const WelcomeScreen = (props) => {
-  const {movieName, genre, year, movieNames} = props;
+  const {movieName, genre, year, movieNames, onMovieCardTitleButtonHandler} = props;
   return (<div>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -35,7 +35,9 @@ const WelcomeScreen = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title">{movieName}</h2>
+            <h2 className="movie-card__title"
+              onClick={onMovieCardTitleButtonHandler}>
+              {movieName}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
               <span className="movie-card__year">{year}</span>
@@ -141,7 +143,8 @@ WelcomeScreen.propTypes = {
   year: PropTypes.string.isRequired,
   movieNames: PropTypes.arrayOf(
       PropTypes.string
-  ).isRequired
+  ).isRequired,
+  onMovieCardTitleButtonHandler: PropTypes.func.isRequired,
 };
 
 export default WelcomeScreen;
