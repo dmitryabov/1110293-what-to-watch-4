@@ -110,7 +110,6 @@ const WelcomeScreen = (props) => {
             </article>
           )}
 
-
         </div>
 
         <div className="catalog__more">
