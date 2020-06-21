@@ -9,8 +9,16 @@ const Movie = {
   year: `2014`
 };
 
-const movieNames = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `The Man Called Flintstone`,
-  `Casper the Friendly Ghost`, `Peppa Pig`, `Aladdin`, `Finding Nemo`, `Toy Story`];
+const movies = [{
+  src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  name: `Fantastic Beasts`
+},
+{
+  src: `img/bohemian-rhapsody.jpg`,
+  name: `Bohemian Rhapsody`
+}];
+
+const movieCardHandler = () => {};
 
 it(`Render WelcomeScreen`, () => {
 
@@ -19,8 +27,8 @@ it(`Render WelcomeScreen`, () => {
     movieName={Movie.movieName}
     genre={Movie.genre}
     year={Movie.year}
-    movieNames={movieNames}
-    onMovieCardTitleButtonHandler={() => {}}
+    movies={movies}
+    onMovieCardClick={movieCardHandler}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();
