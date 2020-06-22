@@ -1,13 +1,7 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import WelcomeScreen from "./welcome-screen.jsx";
+import MovieList from "./movie-list.jsx";
 
-
-const Movie = {
-  movieName: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: `2014`
-};
 
 const movies = [{
   id: 1,
@@ -20,17 +14,12 @@ const movies = [{
   name: `Bohemian Rhapsody`
 }];
 
-const movieCardHandler = () => {};
-
-it(`Render WelcomeScreen`, () => {
+it(`Render MovieList`, () => {
 
   const tree = renderer
-  .create(<WelcomeScreen
-    movieName={Movie.movieName}
-    genre={Movie.genre}
-    year={Movie.year}
+  .create(<MovieList
     movies={movies}
-    onMovieCardClick={movieCardHandler}
+    onMovieCardClick={() => {}}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

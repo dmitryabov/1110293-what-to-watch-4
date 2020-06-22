@@ -1,9 +1,10 @@
 import React from "react";
 import PropTypes from "prop-types";
+import MovieList from "../movie-list/movie-list.jsx";
 
 
 const WelcomeScreen = (props) => {
-  const {movieName, genre, year, movieNames, onMovieCardTitleButtonHandler} = props;
+  const {movieName, genre, year, movies, onMovieCardClick} = props;
   return (<div>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -35,8 +36,7 @@ const WelcomeScreen = (props) => {
           </div>
 
           <div className="movie-card__desc">
-            <h2 className="movie-card__title"
-              onClick={onMovieCardTitleButtonHandler}>
+            <h2 className="movie-card__title">
               {movieName}</h2>
             <p className="movie-card__meta">
               <span className="movie-card__genre">{genre}</span>
@@ -101,16 +101,7 @@ const WelcomeScreen = (props) => {
 
         <div className="catalog__movies-list">
 
-          {movieNames.map((it, i) =>
-            <article key={it + i} className="small-movie-card catalog__movies-card">
-              <div className="small-movie-card__image">
-                <img src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg" alt={it} width="280" height="175" />
-              </div>
-              <h3 className="small-movie-card__title">
-                <a className="small-movie-card__link" href="movie-page.html">{it}</a>
-              </h3>
-            </article>
-          )}
+          <MovieList movies={movies} onMovieCardClick={onMovieCardClick} />
 
         </div>
 
@@ -141,10 +132,14 @@ WelcomeScreen.propTypes = {
   movieName: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
-  movieNames: PropTypes.arrayOf(
-      PropTypes.string
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      })
   ).isRequired,
-  onMovieCardTitleButtonHandler: PropTypes.func.isRequired,
+  onMovieCardClick: PropTypes.func.isRequired,
 };
 
 export default WelcomeScreen;

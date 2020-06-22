@@ -2,17 +2,18 @@ import React from "react";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import PropTypes from "prop-types";
 
-const movieCardTitleButtonHandler = () => {};
+
+const movieCardHandler = () => {};
 
 const App = (props) => {
-  const {movieName, genre, year, movieNames} = props;
+  const {movieName, genre, year, movies} = props;
   return (
     <WelcomeScreen
       movieName={movieName}
       genre={genre}
       year={year}
-      movieNames={movieNames}
-      onMovieCardTitleButtonHandler={movieCardTitleButtonHandler}
+      movies={movies}
+      onMovieCardClick={movieCardHandler}
     />
   );
 };
@@ -21,9 +22,13 @@ App.propTypes = {
   movieName: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
-  movieNames: PropTypes.arrayOf(
-      PropTypes.string
-  ).isRequired
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      })
+  ).isRequired,
 };
 
 export default App;
