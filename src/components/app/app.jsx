@@ -22,7 +22,13 @@ App.propTypes = {
   movieName: PropTypes.string.isRequired,
   genre: PropTypes.string.isRequired,
   year: PropTypes.string.isRequired,
-  movies: PropTypes.array.isRequired
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      })
+  ).isRequired,
 };
 
 export default App;

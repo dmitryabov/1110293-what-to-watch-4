@@ -9,28 +9,26 @@ const Movie = {
   year: `2014`
 };
 
-const movieNames = [`Fantastic Beasts`, `Bohemian Rhapsody`, `Macbeth`, `The Man Called Flintstone`,
-  `Casper the Friendly Ghost`, `Peppa Pig`, `Aladdin`, `Finding Nemo`, `Toy Story`];
 
 const movies = [
   {
+    id: 1,
     src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
     name: `Fantastic Beasts`
   },
   {
+    id: 2,
     src: `img/bohemian-rhapsody.jpg`,
     name: `Bohemian Rhapsody`
-  }
+  },
 ];
 
 it(`Render App`, () => {
-
   const tree = renderer
   .create(<App
     movieName={Movie.movieName}
     genre={Movie.genre}
     year={Movie.year}
-    movieNames={movieNames}
     movies={movies}
   />).toJSON();
 

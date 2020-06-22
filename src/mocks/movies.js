@@ -1,4 +1,4 @@
-export default [
+const movies = [
   {
     id: 1,
     src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -40,3 +40,5 @@ export default [
     name: `Shutter Island`
   },
 ];
+
+export default movies;

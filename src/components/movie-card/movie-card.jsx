@@ -3,7 +3,7 @@ import PropTypes from "prop-types";
 
 
 const MovieCard = (props) => {
-  const {movies, onMovieCardClick, onMouseEnterCard, onMouseLeaveCard} = props;
+  const {movie, onMovieCardClick, onMouseEnterCard, onMouseLeaveCard} = props;
 
   const mouseEnterCard = () => onMouseEnterCard(id);
   const mouseLeaveCard = () => onMouseLeaveCard();
@@ -12,7 +12,7 @@ const MovieCard = (props) => {
     src,
     name,
     id
-  } = movies;
+  } = movie;
 
   return (
     <article className="small-movie-card catalog__movies-card"
@@ -30,7 +30,12 @@ const MovieCard = (props) => {
 };
 
 MovieCard.propTypes = {
-  movies: PropTypes.object.isRequired,
+  movie:
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      }).isRequired,
   onMovieCardClick: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired,

@@ -10,10 +10,12 @@ const Movie = {
 };
 
 const movies = [{
+  id: 1,
   src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
   name: `Fantastic Beasts`
 },
 {
+  id: 2,
   src: `img/bohemian-rhapsody.jpg`,
   name: `Bohemian Rhapsody`
 }];

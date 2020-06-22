@@ -18,8 +18,8 @@ class MovieList extends PureComponent {
       <React.Fragment>
         {movies.map((movie, i) =>
           <MovieCard
-            key={movie + i}
-            movies={movie}
+            key={movie.name + i}
+            movie={movie}
             onMovieCardClick={onMovieCardClick}
             onMouseEnterCard={this._mouseEnterCardHandler}
             onMouseLeaveCard={this._mouseLeaveCardHandler}
@@ -40,7 +40,13 @@ class MovieList extends PureComponent {
 
 
 MovieList.propTypes = {
-  movies: PropTypes.array.isRequired,
+  movies: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        src: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired
+      })
+  ).isRequired,
   onMovieCardClick: PropTypes.func.isRequired
 };
 

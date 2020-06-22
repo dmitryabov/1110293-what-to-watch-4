@@ -8,7 +8,7 @@ Enzyme.configure({
   adapter: new Adapter(),
 });
 
-const movies =
+const movie =
   {
     id: 1,
     src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
@@ -21,7 +21,7 @@ it(`Click on movie title`, () => {
 
   const movieCard = shallow(
       <MovieCard
-        movies={movies}
+        movie={movie}
         onMovieCardClick={onMovieCardClick}
         onMouseEnterCard={() => {}}
         onMouseLeaveCard={() => {}}
@@ -40,7 +40,7 @@ it(`Mouse hover on movie card`, () => {
 
   const movieCard = shallow(
       <MovieCard
-        movies={movies}
+        movie={movie}
         onMovieCardClick={() => {}}
         onMouseEnterCard={onMouseEnterCard}
         onMouseLeaveCard={onMouseLeaveCard}
@@ -58,7 +58,7 @@ it(`Mouse  movie card`, () => {
 
   const movieCard = shallow(
       <MovieCard
-        movies={movies}
+        movie={movie}
         onMovieCardClick={() => {}}
         onMouseEnterCard={onMouseEnterCard}
         onMouseLeaveCard={onMouseLeaveCard}
@@ -70,12 +70,12 @@ it(`Mouse  movie card`, () => {
   expect(onMouseLeaveCard.mock.calls.length).toBe(1);
 });
 
-it(`ard`, () => {
+it(`the desired movie comes to the function`, () => {
   const onMouseEnterCard = jest.fn((id) => id);
 
   const movieCard = shallow(
       <MovieCard
-        movies={movies}
+        movie={movie}
         onMovieCardClick={() => {}}
         onMouseEnterCard={onMouseEnterCard}
         onMouseLeaveCard={() => {}}
@@ -83,5 +83,5 @@ it(`ard`, () => {
   );
 
   movieCard.simulate(`mouseenter`);
-  expect(onMouseEnterCard.mock.results[0].value).toBe(movies.id);
+  expect(onMouseEnterCard.mock.results[0].value).toBe(movie.id);
 });

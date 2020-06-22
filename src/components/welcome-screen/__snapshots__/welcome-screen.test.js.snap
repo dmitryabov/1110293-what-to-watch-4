@@ -259,6 +259,7 @@ exports[`Render WelcomeScreen 1`] = `
       >
         <article
           className="small-movie-card catalog__movies-card"
+          id={1}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
@@ -286,6 +287,7 @@ exports[`Render WelcomeScreen 1`] = `
         </article>
         <article
           className="small-movie-card catalog__movies-card"
+          id={2}
           onMouseEnter={[Function]}
           onMouseLeave={[Function]}
         >
