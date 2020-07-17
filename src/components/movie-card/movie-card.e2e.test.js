@@ -15,7 +15,6 @@ const movie =
     name: `Fantastic Beasts`
   };
 
-
 it(`Click on movie title`, () => {
   const onMovieCardClick = jest.fn();
 
