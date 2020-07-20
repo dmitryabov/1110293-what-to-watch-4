@@ -4,7 +4,7 @@ import MovieList from "../movie-list/movie-list.jsx";
 
 
 const WelcomeScreen = (props) => {
-  const {movieName, genre, year, movies, onMovieCardClick} = props;
+  const {movieName, genre, year, movies, onMovieImgClick, onMovieTitleClick} = props;
   return (<div>
     <section className="movie-card">
       <div className="movie-card__bg">
@@ -101,7 +101,7 @@ const WelcomeScreen = (props) => {
 
         <div className="catalog__movies-list">
 
-          <MovieList movies={movies} onMovieCardClick={onMovieCardClick} />
+          <MovieList movies={movies} onMovieImgClick={onMovieImgClick} onMovieTitleClick={onMovieTitleClick}/>
 
         </div>
 
@@ -139,7 +139,8 @@ WelcomeScreen.propTypes = {
         name: PropTypes.string.isRequired
       })
   ).isRequired,
-  onMovieCardClick: PropTypes.func.isRequired,
+  onMovieImgClick: PropTypes.func.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired
 };
 
 export default WelcomeScreen;

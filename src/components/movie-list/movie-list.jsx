@@ -12,7 +12,7 @@ class MovieList extends PureComponent {
   }
 
   render() {
-    const {movies, onMovieCardClick} = this.props;
+    const {movies, onMovieImgClick, onMovieTitleClick} = this.props;
 
     return (
       <React.Fragment>
@@ -20,7 +20,8 @@ class MovieList extends PureComponent {
           <MovieCard
             key={movie.name + i}
             movie={movie}
-            onMovieCardClick={onMovieCardClick}
+            onMovieImgClick={onMovieImgClick}
+            onMovieTitleClick={onMovieTitleClick}
             onMouseEnterCard={this._mouseEnterCardHandler}
             onMouseLeaveCard={this._mouseLeaveCardHandler}
           />
@@ -47,7 +48,8 @@ MovieList.propTypes = {
         name: PropTypes.string.isRequired
       })
   ).isRequired,
-  onMovieCardClick: PropTypes.func.isRequired
+  onMovieImgClick: PropTypes.func.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired
 };
 
 export default MovieList;

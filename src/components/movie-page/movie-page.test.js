@@ -1,14 +1,13 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCard from "./movie-card.jsx";
+import MoviePage from "./movie-page.jsx";
 
 
-const movie =
-{
-  id: 6,
-  src: `img/what-we-do-in-the-shadows.jpg`,
-  poster: `img/what-we-do-in-the-shadows.jpg`,
-  name: `What We Do in the Shadows`,
+const movie = {
+  id: 2,
+  src: `img/bohemian-rhapsody.jpg`,
+  poster: `img/bohemian-rhapsody.jpg`,
+  name: `Bohemian Rhapsody`,
   genre: `drama`,
   released: `2012`,
   rating: `8.4`,
@@ -20,15 +19,12 @@ const movie =
   starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
 };
 
-it(`Render MovieCard`, () => {
+
+it(`Render WelcomeScreen`, () => {
 
   const tree = renderer
-  .create(<MovieCard
-    movie={movie}
-    onMovieImgClick={() => {}}
-    onMovieTitleClick={() => {}}
-    onMouseEnterCard={() => {}}
-    onMouseLeaveCard={() => {}}
+  .create(<MoviePage
+    movies={movie}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

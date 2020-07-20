@@ -5,7 +5,7 @@ import movies from "./mocks/movies";
 
 
 const Movie = {
-  movieName: `The Grand Budapest Hotel`,
+  movieName: `Fantastic Beasts`,
   genre: `Drama`,
   year: `2014`
 };

@@ -4,7 +4,7 @@ exports[`Render MovieList 1`] = `
 Array [
   <article
     className="small-movie-card catalog__movies-card"
-    id={1}
+    id={6}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -13,9 +13,9 @@ Array [
       onClick={[Function]}
     >
       <img
-        alt="Fantastic Beasts"
+        alt="What We Do in the Shadows"
         height="175"
-        src="img/fantastic-beasts-the-crimes-of-grindelwald.jpg"
+        src="img/what-we-do-in-the-shadows.jpg"
         width="280"
       />
     </div>
@@ -25,14 +25,15 @@ Array [
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
-        Fantastic Beasts
+        What We Do in the Shadows
       </a>
     </h3>
   </article>,
   <article
     className="small-movie-card catalog__movies-card"
-    id={2}
+    id={7}
     onMouseEnter={[Function]}
     onMouseLeave={[Function]}
   >
@@ -41,9 +42,9 @@ Array [
       onClick={[Function]}
     >
       <img
-        alt="Bohemian Rhapsody"
+        alt="Johnny English"
         height="175"
-        src="img/bohemian-rhapsody.jpg"
+        src="img/johnny-english.jpg"
         width="280"
       />
     </div>
@@ -53,8 +54,9 @@ Array [
       <a
         className="small-movie-card__link"
         href="movie-page.html"
+        onClick={[Function]}
       >
-        Bohemian Rhapsody
+        Johnny English
       </a>
     </h3>
   </article>,
