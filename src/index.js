@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import App from "./components/app/app.jsx";
 import movies from "./mocks/movies";
-import { BrowserRouter } from "react-router-dom";
 
 
 const Movie = {
@@ -18,6 +17,5 @@ ReactDOM.render(
       genre={Movie.genre}
       year={Movie.year}
       movies={movies}
-
     />, document.querySelector(`#root`)
 );
