@@ -5,7 +5,7 @@ import movies from "./mocks/movies";
 
 
 const Movie = {
-  movieName: `The Grand Budapest Hotel`,
+  movieName: `Fantastic Beasts`,
   genre: `Drama`,
   year: `2014`
 };
@@ -17,7 +17,5 @@ ReactDOM.render(
       genre={Movie.genre}
       year={Movie.year}
       movies={movies}
-
-    />,
-    document.querySelector(`#root`)
+    />, document.querySelector(`#root`)
 );
