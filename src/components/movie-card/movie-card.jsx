@@ -1,47 +1,99 @@
-import React from "react";
+import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
+import VideoPlayer from "../video-player/video-player.jsx";
 
 
-const MovieCard = (props) => {
-  const {movie, onMovieImgClick, onMouseEnterCard, onMouseLeaveCard, onMovieTitleClick} = props;
+class MovieCard extends PureComponent {
+  constructor(props) {
+    super(props);
 
-  const mouseEnterCard = () => onMouseEnterCard(id);
-  const mouseLeaveCard = () => onMouseLeaveCard();
-  const onImgCardClick = () => onMovieImgClick(id);
-  const onTitleCardClick = (evt)=>{
-    evt.preventDefault();
-    onMovieTitleClick(id);
-  };
+    this.state = {
+      isPlaying: false
+    };
 
-  const {
-    src,
-    name,
-    id
-  } = movie;
+    this._onMouseEnterCardHandler = this._onMouseEnterCardHandler.bind(this);
+    this._onMouseLeaveCardHandler = this._onMouseLeaveCardHandler.bind(this);
+  }
+
+  _onMouseEnterCardHandler() {
+    this.setState({
+      isPlaying: true
+    });
+  }
+
+  _onMouseLeaveCardHandler() {
+    this.setState({
+      isPlaying: false
+    });
+  }
 
 
-  return (
-    <article className="small-movie-card catalog__movies-card"
-      id={id}
+  render() {
+    const {movie, onMovieImgClick, onMouseEnterCard, onMouseLeaveCard, onMovieTitleClick} = this.props;
+    const {isPlaying} = this.state;
+    const {video, id, poster} = movie;
 
-      onMouseEnter={mouseEnterCard}
-      onMouseLeave={mouseLeaveCard}>
-      <div onClick={onImgCardClick} className="small-movie-card__image">
-        <img src={src} alt={name} width="280" height="175" />
-      </div>
-      <h3 className="small-movie-card__title">
-        <a onClick={onTitleCardClick} className="small-movie-card__link" href="movie-page.html">{name}</a>
-      </h3>
-    </article>
-  );
-};
+    const mouseEnterCard = () => {
+      onMouseEnterCard(id);
+      this._onMouseEnterCardHandler();
+    };
+
+    const mouseLeaveCard = () => {
+      onMouseLeaveCard();
+      this._onMouseLeaveCardHandler();
+    };
+
+    const onImgCardClick = () => {
+      onMovieImgClick(id);
+    };
+
+    const onTitleCardClick = (evt)=>{
+      evt.preventDefault();
+      onMovieTitleClick(id);
+    };
+
+
+    return (
+      <article className="small-movie-card catalog__movies-card"
+        id={id}
+        onMouseEnter={mouseEnterCard}
+        onMouseLeave={mouseLeaveCard}>
+        <div className="small-movie-card__image"
+          onClick={onImgCardClick}
+        >
+          <VideoPlayer
+            src={video}
+            isPlaying={isPlaying}
+            poster={poster}
+
+          />
+        </div>
+        <h3 className="small-movie-card__title">
+          <a onClick={onTitleCardClick}
+            className="small-movie-card__link"
+            href="movie-page.html">{name}
+          </a>
+        </h3>
+      </article>
+    );
+  }
+}
 
 MovieCard.propTypes = {
   movie:
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         src: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
+        poster: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        released: PropTypes.string.isRequired,
+        rating: PropTypes.string.isRequired,
+        count: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        video: PropTypes.string.isRequired,
       }).isRequired,
   onMovieImgClick: PropTypes.func.isRequired,
   onMouseEnterCard: PropTypes.func.isRequired,
@@ -50,3 +102,4 @@ MovieCard.propTypes = {
 };
 
 export default MovieCard;
+

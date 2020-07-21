@@ -79,7 +79,8 @@ App.propTypes = {
         count: PropTypes.string.isRequired,
         description: PropTypes.string.isRequired,
         director: PropTypes.string.isRequired,
-        starring: PropTypes.arrayOf(PropTypes.string)
+        starring: PropTypes.arrayOf(PropTypes.string),
+        video: PropTypes.string.isRequired,
 
       })
   ).isRequired,
