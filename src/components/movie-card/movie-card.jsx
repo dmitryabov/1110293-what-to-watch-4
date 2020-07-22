@@ -31,7 +31,7 @@ class MovieCard extends PureComponent {
   render() {
     const {movie, onMovieImgClick, onMouseEnterCard, onMouseLeaveCard, onMovieTitleClick} = this.props;
     const {isPlaying} = this.state;
-    const {video, id, poster} = movie;
+    const {video, id, poster, name} = movie;
 
     const mouseEnterCard = () => {
       onMouseEnterCard(id);
@@ -54,27 +54,31 @@ class MovieCard extends PureComponent {
 
 
     return (
-      <article className="small-movie-card catalog__movies-card"
-        id={id}
-        onMouseEnter={mouseEnterCard}
-        onMouseLeave={mouseLeaveCard}>
-        <div className="small-movie-card__image"
-          onClick={onImgCardClick}
+      <React.Fragment>
+        <article className="small-movie-card catalog__movies-card"
+          id={id}
+          onMouseEnter={mouseEnterCard}
+          onMouseLeave={mouseLeaveCard}
         >
-          <VideoPlayer
-            src={video}
-            isPlaying={isPlaying}
-            poster={poster}
 
-          />
-        </div>
-        <h3 className="small-movie-card__title">
-          <a onClick={onTitleCardClick}
-            className="small-movie-card__link"
-            href="movie-page.html">{name}
-          </a>
-        </h3>
-      </article>
+          <div className="small-movie-card__image"
+            onClick={onImgCardClick}
+          >
+            <VideoPlayer
+              src={video}
+              isPlaying={isPlaying}
+              poster={poster}
+            />
+
+          </div>
+          <h3 className="small-movie-card__title">
+            <a onClick={onTitleCardClick}
+              className="small-movie-card__link"
+              href="movie-page.html">{name}
+            </a>
+          </h3>
+        </article>
+      </React.Fragment>
     );
   }
 }

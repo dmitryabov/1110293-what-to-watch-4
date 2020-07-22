@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import PropTypes from "prop-types";
-import {Switch, Route, BrowserRouter} from "react-router-dom";
+import {Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "../movie-page/movie-page.jsx";
 
 
@@ -27,7 +27,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {movieName, genre, year, movies} = this.props;
+    const {movieName, genre, year, movies, comments} = this.props;
     const {page} = this.state;
     if (page <= -1) {
       return (
@@ -41,7 +41,8 @@ class App extends PureComponent {
         />
       );
     } else if (page >= 0) {
-      return <MoviePage movies={movies[this.state.currentMovie]}/>;
+      return <MoviePage movie={movies[this.state.currentMovie]} movies={movies} comments={comments} onMovieImgClick={this._onMovieImgClick}
+        onMovieTitleClick={this._onMovieTitleClick}/>;
     }
     return null;
   }
@@ -50,14 +51,8 @@ class App extends PureComponent {
 
     return (
       <BrowserRouter>
-        <Switch>
-          <Route exact path="/" >
-            {this._renderApp()}
-          </Route>
-          <Route path="/movie-page">
-            <MoviePage movies={this.props.movies[this.state.currentMovie]}/>
-          </Route>
-        </Switch>
+        <Route exact path="/" render={() => this._renderApp()}/>
+        <Route path="/movie-page/:id?" render={() => <MoviePage movies={this.props.movies[this.state.currentMovie]}/>}/>
       </BrowserRouter>
     );
   }
@@ -82,6 +77,18 @@ App.propTypes = {
         starring: PropTypes.arrayOf(PropTypes.string),
         video: PropTypes.string.isRequired,
 
+      })
+  ).isRequired,
+  comments: PropTypes.arrayOf(
+      PropTypes.shape({
+        id: PropTypes.number.isRequired,
+        user: PropTypes.shape({
+          id: PropTypes.number.isRequired,
+          name: PropTypes.string.isRequired,
+        }),
+        rating: PropTypes.number.isRequired,
+        comment: PropTypes.string.isRequired,
+        date: PropTypes.string.isRequired,
       })
   ).isRequired,
 };

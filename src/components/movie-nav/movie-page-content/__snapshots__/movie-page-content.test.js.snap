@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`Render MovieList 1`] = `
+exports[`Render MoviePageContaiter 1`] = `
 Array [
   <article
     className="small-movie-card catalog__movies-card"

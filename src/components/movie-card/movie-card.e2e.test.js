@@ -88,7 +88,7 @@ it(`Mouse  movie card`, () => {
 });
 
 it(`the desired movie comes to the function`, () => {
-  const onMouseEnterCard = jest.fn((id) => id);
+  const onMouseEnterCard = jest.fn();
 
   const movieCard = shallow(
       <MovieCard
@@ -100,7 +100,9 @@ it(`the desired movie comes to the function`, () => {
         onMouseLeaveCard={() => {}}
       />
   );
+  const card = movieCard.find(`.small-movie-card`);
 
-  movieCard.simulate(`mouseenter`);
-  expect(onMouseEnterCard.mock.results[0].value).toBe(movie.id);
+  card.simulate(`mouseenter`);
+  expect(onMouseEnterCard).toHaveBeenCalledTimes(1);
+  expect(onMouseEnterCard.mock.calls[0][0]).toBe(movie.id);
 });
