@@ -1,6 +1,6 @@
 import React from "react";
 import renderer from "react-test-renderer";
-import MovieCard from "./movie-card.jsx";
+import VideoPlayer from "./video-player.jsx";
 
 
 const movie =
@@ -21,17 +21,15 @@ const movie =
   video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
 };
 
-it(`Render MovieCard`, () => {
+it(`Render VideoPlayer`, () => {
 
   const tree = renderer
-  .create(<MovieCard
-    movie={movie}
-    onMovieImgClick={() => {}}
-    onMovieTitleClick={() => {}}
-    onMouseEnterCard={() => {}}
-    onMouseLeaveCard={() => {}}
+  .create(<VideoPlayer
+    src={movie.video}
+    isPlaying={true}
+    poster={movie.poster}
   />, {
-    createNodeMock: ()=>{
+    createNodeMock: () => {
       return {};
     }
   }).toJSON();

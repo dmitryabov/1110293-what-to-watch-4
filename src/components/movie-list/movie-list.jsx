@@ -45,7 +45,17 @@ MovieList.propTypes = {
       PropTypes.shape({
         id: PropTypes.number.isRequired,
         src: PropTypes.string.isRequired,
-        name: PropTypes.string.isRequired
+        poster: PropTypes.string.isRequired,
+        name: PropTypes.string.isRequired,
+        genre: PropTypes.string.isRequired,
+        released: PropTypes.string.isRequired,
+        rating: PropTypes.string.isRequired,
+        count: PropTypes.string.isRequired,
+        description: PropTypes.string.isRequired,
+        director: PropTypes.string.isRequired,
+        starring: PropTypes.arrayOf(PropTypes.string),
+        video: PropTypes.string.isRequired,
+
       })
   ).isRequired,
   onMovieImgClick: PropTypes.func.isRequired,
