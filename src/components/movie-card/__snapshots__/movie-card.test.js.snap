@@ -30,7 +30,7 @@ exports[`Render MovieCard 1`] = `
       href="movie-page.html"
       onClick={[Function]}
     >
-      
+      What We Do in the Shadows
     </a>
   </h3>
 </article>
