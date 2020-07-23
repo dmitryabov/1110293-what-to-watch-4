@@ -17,7 +17,6 @@ class MoviePageContent extends PureComponent {
     const filtredMovies = movies.filter((movie) => {
       return movie.genre === genre;
     });
-
     return (
       <React.Fragment>
         {filtredMovies.map((movie, i) =>

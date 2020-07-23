@@ -6,6 +6,7 @@ import MoviePageDetails from "./movie-page-details.jsx";
 const movie = {
   id: 6,
   src: `img/what-we-do-in-the-shadows.jpg`,
+  runTime: 111,
   poster: `img/what-we-do-in-the-shadows.jpg`,
   name: `What We Do in the Shadows`,
   genre: `drama`,

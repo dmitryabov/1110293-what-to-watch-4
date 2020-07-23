@@ -36,8 +36,6 @@ class MoviePage extends PureComponent {
     const {onMovieImgClick, onMovieTitleClick} = this.props;
     const {activeTab} = this.state;
     const movieTabs = Object.values(movieTabType);
-
-
     return (
       <div>
         <section className="movie-card movie-card--full">
