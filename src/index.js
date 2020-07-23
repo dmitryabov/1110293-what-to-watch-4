@@ -17,4 +17,3 @@ ReactDOM.render(
       <AppContainer
       /></Provider>, document.querySelector(`#root`)
 );
-window.store = store;
