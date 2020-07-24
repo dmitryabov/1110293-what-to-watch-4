@@ -78,7 +78,9 @@ exports[`Render MoviePageContaiter 1`] = `
       </strong>
       <span
         className="movie-card__details-value"
-      />
+      >
+        111
+      </span>
     </p>
     <p
       className="movie-card__details-item"

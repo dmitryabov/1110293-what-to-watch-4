@@ -1,23 +1,19 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./components/app/app.jsx";
-import movies from "./mocks/movies";
-import comments from "./mocks/comments";
+import AppContainer from "./components/app/app.jsx";
+import {createStore} from "redux";
+import genreReduser from "./redux/reducer.js";
+import {Provider} from "react-redux";
 
 
-const Movie = {
-  movieName: `Fantastic Beasts`,
-  genre: `Drama`,
-  year: `2014`
-};
+const store = createStore(
+    genreReduser,
+    window.__REDUX_DEVTOOLS_EXTENSION__ ? window.__REDUX_DEVTOOLS_EXTENSION__() : (f) => f
+);
 
 
 ReactDOM.render(
-    <App
-      movieName={Movie.movieName}
-      genre={Movie.genre}
-      year={Movie.year}
-      movies={movies}
-      comments={comments}
-    />, document.querySelector(`#root`)
+    <Provider store={store}>
+      <AppContainer
+      /></Provider>, document.querySelector(`#root`)
 );
