@@ -135,6 +135,23 @@ const movies = [
     starring: [`El Murray`, `Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
     video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
   },
+  {
+    id: 9,
+    runTime: 111,
+    src: `img/shutter-island.jpg`,
+    poster: `img/shutter-island.jpg`,
+    name: `Shutter Island`,
+    genre: `Sci-Fi`,
+    released: `1999`,
+    rating: `9.4`,
+    count: `299`,
+    description: `In the 1930s, the Grand Budapest Hotel is a popular European 
+    ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a 
+    junior lobby boy, becomes Gustave's friend and protege.`,
+    director: `Wester Andreson`,
+    starring: [`El Murray`, `Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
+    video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
+  },
 ];
 
 export default movies;

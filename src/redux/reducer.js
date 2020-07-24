@@ -23,32 +23,19 @@ const movieGenreTab = {
 };
 
 const initialState = {
-  genre: null,
+  genre: `All genres`,
   movies,
   comments
 };
 
 
-const getFilteredMovies = (genre) => {
-  const allMovies = initialState.movies;
-
-  if (genre === movieGenreTab.all) {
-    return allMovies;
-  }
-
-  const filteredMovies = allMovies.filter((movie) => movie.genre === genre);
-
-  return filteredMovies;
-};
-
-
-const genreReduser = (state = initialState, action) => {
+const genreReduser = (state = initialState, action = {type: movieGenreTab.all}) => {
   switch (action.type) {
     case GENRE: {
-      const filteredMovies = getFilteredMovies(action.genre);
+
       return extend(state, {
         genre: action.genre,
-        movies: filteredMovies
+        movies,
       });
     }
     default:

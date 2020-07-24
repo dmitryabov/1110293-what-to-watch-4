@@ -11,9 +11,9 @@ class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._onMovieImgClick = this._onMovieImgClick.bind(this);
-    this._onMovieTitleClick = this._onMovieTitleClick.bind(this);
-    this._onGenreChanged = this._onGenreChanged.bind(this);
+    this._handleMovieImgClick = this._handleMovieImgClick.bind(this);
+    this._handleMovieTitleClick = this._handleMovieTitleClick.bind(this);
+    this._handleGenreChanged = this._handleGenreChanged.bind(this);
     this._renderApp = this._renderApp.bind(this);
 
     this.state = {
@@ -22,40 +22,43 @@ class App extends PureComponent {
     };
   }
 
-  _onMovieImgClick(cardId) {
+  _handleMovieImgClick(cardId) {
     this.setState({page: 1, currentMovie: cardId});
   }
 
-  _onMovieTitleClick(cardId) {
+  _handleMovieTitleClick(cardId) {
     this.setState({page: 1, currentMovie: cardId});
   }
 
-  _onGenreChanged(genre) {
+  _handleGenreChanged(genre) {
     this.props.getMovieGenre(genre);
   }
 
   _renderApp() {
-    const {movies, comments} = this.props;
+    const {movies, comments, activeGenre} = this.props;
     const {page} = this.state;
     if (page <= -1) {
       return (
         <WelcomeScreen
           movies={movies}
-          onMovieImgClick={this._onMovieImgClick}
-          onMovieTitleClick={this._onMovieTitleClick}
-          getMovieGenre={this._onGenreChanged}
+          onMovieImgClick={this._handleMovieImgClick}
+          onMovieTitleClick={this._handleMovieTitleClick}
+          getMovieGenre={this._handleGenreChanged}
+          activeGenre={activeGenre}
         />
       );
     } else if (page >= 0) {
-      return <MoviePage movie={movies.find((mov) => mov.id === this.state.currentMovie)} movies={movies} comments={comments} onMovieImgClick={this._onMovieImgClick}
-        onMovieTitleClick={this._onMovieTitleClick}/>;
+      return <MoviePage movie={movies.find((mov) => mov.id === this.state.currentMovie)}
+        movies={movies}
+        comments={comments}
+        onMovieImgClick={this._handleMovieImgClick}
+        onMovieTitleClick={this._handleMovieTitleClick}/>;
     }
     return null;
   }
 
 
   render() {
-
     return (
       <BrowserRouter>
         <Route exact path="/" render={() => this._renderApp()}/>
@@ -96,13 +99,15 @@ App.propTypes = {
       })
   ).isRequired,
   getMovieGenre: PropTypes.func.isRequired,
+  activeGenre: PropTypes.string.isRequired,
 };
 
 
 const mapStateToProps = (state) => {
   return {
     movies: state.movies,
-    comments: state.comments
+    comments: state.comments,
+    activeGenre: state.genre,
   };
 };
 

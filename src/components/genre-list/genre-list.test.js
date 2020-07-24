@@ -9,7 +9,7 @@ it(`Render WelcomeScreen`, () => {
 
   const tree = renderer
   .create(<GenreList
-    movieGenreTab={movieGenreTab}
+    movieGenreTabs={movieGenreTab}
     activeTab={`Crime`}
     onGenreTabClick={() => {}}
     getMovieGenre={() => {}}

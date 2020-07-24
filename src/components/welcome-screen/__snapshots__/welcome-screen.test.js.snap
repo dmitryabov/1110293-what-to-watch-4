@@ -154,7 +154,7 @@ exports[`Render WelcomeScreen 1`] = `
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item + catalog__genres-item--active"
+          className="catalog__genres-item + "
         >
           <a
             className="catalog__genres-link"
@@ -172,177 +172,17 @@ exports[`Render WelcomeScreen 1`] = `
             href="#"
             onClick={[Function]}
           >
-            Comedies
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Crime
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Documentary
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Dramas
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Horror
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Kids & Family
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Romance
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Sci-Fi
-          </a>
-        </li>
-        <li
-          className="catalog__genres-item + "
-        >
-          <a
-            className="catalog__genres-link"
-            href="#"
-            onClick={[Function]}
-          >
-            Thrillers
+            drama
           </a>
         </li>
       </ul>
       <div
         className="catalog__movies-list"
-      >
-        <article
-          className="small-movie-card catalog__movies-card"
-          id={6}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <video
-              autoPlay={false}
-              height="175"
-              loop={true}
-              muted={true}
-              poster="img/what-we-do-in-the-shadows.jpg"
-              preload="none"
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              What We Do in the Shadows
-            </a>
-          </h3>
-        </article>
-        <article
-          className="small-movie-card catalog__movies-card"
-          id={7}
-          onMouseEnter={[Function]}
-          onMouseLeave={[Function]}
-        >
-          <div
-            className="small-movie-card__image"
-            onClick={[Function]}
-          >
-            <video
-              autoPlay={false}
-              height="175"
-              loop={true}
-              muted={true}
-              poster="img/johnny-english.jpg"
-              preload="none"
-              src="https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm"
-              width="280"
-            />
-          </div>
-          <h3
-            className="small-movie-card__title"
-          >
-            <a
-              className="small-movie-card__link"
-              href="movie-page.html"
-              onClick={[Function]}
-            >
-              Johnny English
-            </a>
-          </h3>
-        </article>
-      </div>
+      />
       <div
         className="catalog__more"
       >
-        <button
-          className="catalog__button"
-          type="button"
-        >
-          Show more
-        </button>
+        
       </div>
     </section>
     <footer
