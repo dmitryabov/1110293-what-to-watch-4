@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import CatalogButton from "../catalog-button/catalog-button.jsx";
+import {withMovieCard} from "../../hocs/with-movie-card/with-movie-card.js";
+
+
+const WithMovieCardContainer = withMovieCard(MovieList);
 
 
 const Movie = {
@@ -15,18 +19,9 @@ const Movie = {
 class WelcomeScreen extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      countMovie: 8
-    };
+
     this._onGenreChanged = this._onGenreChanged.bind(this);
-    this._handlerClickOnButton = this._handlerClickOnButton.bind(this);
-  }
 
-
-  _handlerClickOnButton() {
-    this.setState({
-      countMovie: this.state.countMovie + 8
-    });
   }
 
   _onGenreChanged(tab) {
@@ -34,7 +29,7 @@ class WelcomeScreen extends PureComponent {
   }
 
   render() {
-    const {movies, onMovieImgClick, onMovieTitleClick, genres, activeGenre} = this.props;
+    const {movies, onMovieImgClick, onMovieTitleClick, genres, activeGenre, clickOnButton, countMovie} = this.props;
 
     const filteredMovie = activeGenre === `All genres` ? movies : movies.filter((movie) => movie.genre === activeGenre);
 
@@ -105,12 +100,12 @@ class WelcomeScreen extends PureComponent {
             clickOnTab={this._onGenreChanged}
           />
           <div className="catalog__movies-list">
-            <MovieList movies={filteredMovie.slice(0, this.state.countMovie)}
+            <WithMovieCardContainer movies={filteredMovie.slice(0, countMovie)}
               onMovieImgClick={onMovieImgClick}
               onMovieTitleClick={onMovieTitleClick}/>
           </div>
           <div className="catalog__more">
-            { filteredMovie.length <= this.state.countMovie ? `` : <CatalogButton clickOnButton={this._handlerClickOnButton}/>}
+            { filteredMovie.length <= countMovie ? `` : <CatalogButton clickOnButton={clickOnButton}/>}
           </div>
         </section>
 
@@ -154,7 +149,10 @@ WelcomeScreen.propTypes = {
   activeGenre: PropTypes.string,
   onMovieTitleClick: PropTypes.func.isRequired,
   getMovieGenre: PropTypes.func,
-  genres: PropTypes.array,
+  genres: PropTypes.arrayOf(PropTypes.string),
+  clickOnButton: PropTypes.func.isRequired,
+  countMovie: PropTypes.number.isRequired
 };
+
 
 export default WelcomeScreen;

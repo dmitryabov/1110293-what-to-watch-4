@@ -1,12 +1,12 @@
 import React from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
-import {withMovieCard} from "../../hocs/with-movie-card/withMovieCard.js";
 
 
 const MovieCard = (props) => {
 
-  const {movie, onMovieImgClick, onMouseEnterCard, onMouseLeaveCard, onMovieTitleClick, onMouseEnterCardHandler, onMouseLeaveCardHandler, isPlay} = props;
+  const {movie, onMovieImgClick, onMouseEnterCard, onMouseLeaveCard, onMovieTitleClick,
+    onMouseEnterCardHandler, onMouseLeaveCardHandler, isPlay} = props;
   const isPlaying = isPlay;
   const {video, id, poster, name} = movie;
 
@@ -81,9 +81,9 @@ MovieCard.propTypes = {
   onMouseLeaveCard: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
   onMouseEnterCardHandler: PropTypes.func.isRequired,
-  onMouseLeaveCardHandler: PropTypes.func.isRequired,
+  onMouseLeaveCardHandler: PropTypes.func,
   isPlay: PropTypes.bool.isRequired,
 };
 
-export default withMovieCard(MovieCard);
+export default MovieCard;
 

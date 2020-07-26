@@ -60,6 +60,8 @@ it(`Render WelcomeScreen`, () => {
     onMovieImgClick={()=>{}}
     onMovieTitleClick={()=>{}}
     activeGenre={`Drama`}
+    clickOnButton={()=> {}}
+    countMovie={1}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

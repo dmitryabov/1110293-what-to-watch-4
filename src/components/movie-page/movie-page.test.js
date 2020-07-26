@@ -4,19 +4,20 @@ import MoviePage from "./movie-page.jsx";
 
 
 const movie = {
-  id: 2,
-  src: `img/bohemian-rhapsody.jpg`,
-  poster: `img/bohemian-rhapsody.jpg`,
-  name: `Bohemian Rhapsody`,
-  genre: `drama`,
+  id: 1,
+  runTime: 111,
+  src: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  poster: `img/fantastic-beasts-the-crimes-of-grindelwald.jpg`,
+  name: `Fantastic Beasts`,
+  genre: `Comedies`,
   released: `2012`,
-  rating: `8.4`,
-  count: `233`,
+  rating: `3.3`,
+  count: `2113`,
   description: `In the 1930s, the Grand Budapest Hotel is a popular European 
-  ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a 
-  junior lobby boy, becomes Gustave's friend and protege.`,
-  director: `Wes Andreson`,
-  starring: [`Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
+    ski resort, presided over by concierge Gustave H. (Ralph Fiennes). Zero, a 
+    junior lobby boy, becomes Gustave's friend and protege.`,
+  director: `Ivan Andreson`,
+  starring: [`El Murray`, `Bill Murray`, `Edward Norton`, `Jude Law`, `Willem Dafoe`, `Saoirse Ronan`],
   video: `https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b3/Big_Buck_Bunny_Trailer_400p.ogv/Big_Buck_Bunny_Trailer_400p.ogv.360p.webm`,
 };
 
@@ -107,6 +108,8 @@ it(`Render WelcomeScreen`, () => {
     comments={comments}
     onMovieImgClick={() => {}}
     onMovieTitleClick={() => {}}
+    activeTab={`All genres`}
+    clickOnTab={()=>{}}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

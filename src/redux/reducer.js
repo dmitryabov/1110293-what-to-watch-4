@@ -10,7 +10,8 @@ const extend = (a, b) => {
 
 const getMovieGenres = (arrayOfMovies) => {
   const typeGenres = [ACTIVE_TYPE_ALL_GENRE];
-  arrayOfMovies.map((movie) => {
+
+  arrayOfMovies.forEach((movie) => {
     typeGenres.push(movie.genre);
   });
 

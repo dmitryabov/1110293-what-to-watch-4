@@ -86,7 +86,11 @@ it(`Render App`, () => {
           comments={comments}
           activeGenre={`activeGenre`}
           genres={genres}
-        /></Provider>, {
+          onMovieImgClick={() => {}}
+          onMovieTitleClick={() => {}}
+          currentMovie={2}
+        />
+      </Provider>, {
         createNodeMock() {
           return {};
         }

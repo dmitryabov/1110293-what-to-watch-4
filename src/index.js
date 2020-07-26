@@ -4,6 +4,10 @@ import AppContainer from "./components/app/app.jsx";
 import {createStore} from "redux";
 import genreReduser from "./redux/reducer.js";
 import {Provider} from "react-redux";
+import {withApp} from "../src/hocs/with-app/withApp.js";
+
+
+const WithAppContainer = withApp(AppContainer);
 
 
 const store = createStore(
@@ -14,6 +18,6 @@ const store = createStore(
 
 ReactDOM.render(
     <Provider store={store}>
-      <AppContainer
+      <WithAppContainer
       /></Provider>, document.querySelector(`#root`)
 );
