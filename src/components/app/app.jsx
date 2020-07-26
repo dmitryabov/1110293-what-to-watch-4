@@ -35,7 +35,7 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {movies, comments, activeGenre} = this.props;
+    const {movies, comments, activeGenre, genres} = this.props;
     const {page} = this.state;
     if (page <= -1) {
       return (
@@ -45,6 +45,7 @@ class App extends PureComponent {
           onMovieTitleClick={this._handleMovieTitleClick}
           getMovieGenre={this._handleGenreChanged}
           activeGenre={activeGenre}
+          genres={genres}
         />
       );
     } else if (page >= 0) {
@@ -59,10 +60,11 @@ class App extends PureComponent {
 
 
   render() {
+    const {movies} = this.props;
     return (
       <BrowserRouter>
         <Route exact path="/" render={() => this._renderApp()}/>
-        <Route path="/movie-page/:id?" render={() => <MoviePage movies={this.props.movies[this.state.currentMovie]}/>}/>
+        <Route path="/movie-page/:id?" render={() => <MoviePage movies={movies[this.state.currentMovie]}/>}/>
       </BrowserRouter>
     );
   }
@@ -99,7 +101,8 @@ App.propTypes = {
       })
   ).isRequired,
   getMovieGenre: PropTypes.func.isRequired,
-  activeGenre: PropTypes.string.isRequired,
+  activeGenre: PropTypes.string,
+  genres: PropTypes.array.isRequired,
 };
 
 
@@ -108,6 +111,7 @@ const mapStateToProps = (state) => {
     movies: state.movies,
     comments: state.comments,
     activeGenre: state.genre,
+    genres: state.genres
   };
 };
 

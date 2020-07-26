@@ -3,34 +3,29 @@ import PropTypes from "prop-types";
 
 
 const GenreList = (props) => {
-  const {movieGenreTabs, activeTab, onGenreTabClick, getMovieGenre} = props;
-
+  const {activeTab, movieTabs, clickOnTab} = props;
 
   return (
     <ul className="catalog__genres-list">
-      {movieGenreTabs.map((genreType, index) => {
-        const activeGenreTab = activeTab === genreType ? `catalog__genres-item--active` : ``;
+      {movieTabs.map((tabIn, index) => {
+        const activeGenreTab = activeTab === tabIn ? `catalog__genres-item--active` : ``;
         return <li className={`catalog__genres-item + ${activeGenreTab}`} key={index}>
-          <a
-            href="#"
+          <a href="#"
             className="catalog__genres-link"
-            onClick={() => {
-              onGenreTabClick(genreType);
-              getMovieGenre(genreType);
-            }}
-          >{genreType}</a>
+            onClick={() => clickOnTab(tabIn)}
+          >{tabIn}</a>
         </li>;
       })
       }</ul>
   );
 };
 
+
 GenreList.propTypes = {
-  movieGenreTabs: PropTypes.arrayOf(PropTypes.string
+  movieTabs: PropTypes.arrayOf(PropTypes.string
   ).isRequired,
-  activeTab: PropTypes.string.isRequired,
-  onGenreTabClick: PropTypes.func.isRequired,
-  getMovieGenre: PropTypes.func.isRequired,
+  activeTab: PropTypes.string,
+  clickOnTab: PropTypes.func.isRequired,
 };
 
 

@@ -1,43 +1,28 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../movie-card/movie-card.jsx";
+import {withMovieList} from "../../hocs/with-movie-list/withMovieList.js";
 
 
-class MovieList extends PureComponent {
-  constructor(props) {
-    super(props);
-    this.state = {activeCard: null};
-    this._mouseEnterCardHandler = this._mouseEnterCardHandler.bind(this);
-    this._mouseLeaveCardHandler = this._mouseLeaveCardHandler.bind(this);
-  }
+const MovieList = (props) => {
 
-  render() {
-    const {movies, onMovieImgClick, onMovieTitleClick} = this.props;
+  const {movies, onMovieImgClick, onMovieTitleClick, onMouseEnterCardHandler, onMouseLeaveCardHandler} = props;
 
-    return (
-      <React.Fragment>
-        {movies.map((movie, i) =>
-          <MovieCard
-            key={movie.name + i}
-            movie={movie}
-            onMovieImgClick={onMovieImgClick}
-            onMovieTitleClick={onMovieTitleClick}
-            onMouseEnterCard={this._mouseEnterCardHandler}
-            onMouseLeaveCard={this._mouseLeaveCardHandler}
-          />
-        )}
-      </React.Fragment>
-    );
-  }
-
-  _mouseEnterCardHandler(cardId) {
-    this.setState({activeCard: cardId});
-  }
-
-  _mouseLeaveCardHandler() {
-    this.setState({activeCard: null});
-  }
-}
+  return (
+    <React.Fragment>
+      {movies.map((movie, i) =>
+        <MovieCard
+          key={movie.name + i}
+          movie={movie}
+          onMovieImgClick={onMovieImgClick}
+          onMovieTitleClick={onMovieTitleClick}
+          onMouseEnterCard={onMouseEnterCardHandler}
+          onMouseLeaveCard={onMouseLeaveCardHandler}
+        />
+      )}
+    </React.Fragment>
+  );
+};
 
 
 MovieList.propTypes = {
@@ -59,7 +44,9 @@ MovieList.propTypes = {
       })
   ).isRequired,
   onMovieImgClick: PropTypes.func.isRequired,
-  onMovieTitleClick: PropTypes.func.isRequired
+  onMovieTitleClick: PropTypes.func.isRequired,
+  onMouseEnterCardHandler: PropTypes.func.isRequired,
+  onMouseLeaveCardHandler: PropTypes.func.isRequired
 };
 
-export default MovieList;
+export default withMovieList(MovieList);

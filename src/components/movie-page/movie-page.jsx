@@ -16,7 +16,6 @@ const movieTabType = {
 class MoviePage extends PureComponent {
   constructor(props) {
     super(props);
-
     this.state = {
       activeTab: movieTabType.overview
     };
@@ -93,8 +92,7 @@ class MoviePage extends PureComponent {
                   <MovieNav
                     movieTabs={movieTabs}
                     activeTab={activeTab}
-                    mouseLeaveCard={this._handlerClickOnTab}
-
+                    clickOnTab={this._handlerClickOnTab}
                   />
                 </nav>
                 {activeTab === movieTabType.details && <MoviePageDetails movies={this.props.movie}/>}

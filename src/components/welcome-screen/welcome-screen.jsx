@@ -16,20 +16,12 @@ class WelcomeScreen extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      activeTab: `All genres`,
       countMovie: 8
     };
-    this._handlerClickOnTab = this._handlerClickOnTab.bind(this);
     this._onGenreChanged = this._onGenreChanged.bind(this);
     this._handlerClickOnButton = this._handlerClickOnButton.bind(this);
   }
 
-
-  _handlerClickOnTab(tab) {
-    this.setState({
-      activeTab: tab
-    });
-  }
 
   _handlerClickOnButton() {
     this.setState({
@@ -42,15 +34,9 @@ class WelcomeScreen extends PureComponent {
   }
 
   render() {
-    const {movies, onMovieImgClick, onMovieTitleClick} = this.props;
-    const arr = [`All genres`];
-    movies.map((mov) => {
-      arr.push(mov.genre);
-    });
+    const {movies, onMovieImgClick, onMovieTitleClick, genres, activeGenre} = this.props;
 
-    const movieGenreTabs = Array.from(new Set(arr));
-    const activeTab = this.props.activeGenre;
-    const filteredMovie = activeTab === `All genres` ? movies : movies.filter((movie) => movie.genre === activeTab);
+    const filteredMovie = activeGenre === `All genres` ? movies : movies.filter((movie) => movie.genre === activeGenre);
 
 
     return (<div>
@@ -114,10 +100,9 @@ class WelcomeScreen extends PureComponent {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList
-            movieGenreTabs={movieGenreTabs}
-            activeTab={activeTab}
-            onGenreTabClick={this._handlerClickOnTab}
-            getMovieGenre={this._onGenreChanged}
+            movieTabs={genres}
+            activeTab={activeGenre}
+            clickOnTab={this._onGenreChanged}
           />
           <div className="catalog__movies-list">
             <MovieList movies={filteredMovie.slice(0, this.state.countMovie)}
@@ -166,9 +151,10 @@ WelcomeScreen.propTypes = {
       })
   ).isRequired,
   onMovieImgClick: PropTypes.func.isRequired,
-  activeGenre: PropTypes.string.isRequired,
+  activeGenre: PropTypes.string,
   onMovieTitleClick: PropTypes.func.isRequired,
   getMovieGenre: PropTypes.func,
+  genres: PropTypes.array,
 };
 
 export default WelcomeScreen;

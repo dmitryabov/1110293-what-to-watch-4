@@ -5,15 +5,18 @@ import GenreList from "./genre-list.jsx";
 
 const movieGenreTab = [`drama`, `comedy`];
 
-it(`Render WelcomeScreen`, () => {
+it(`Render GenreList`, () => {
 
   const tree = renderer
   .create(<GenreList
-    movieGenreTabs={movieGenreTab}
+    movieTabs={movieGenreTab}
     activeTab={`Crime`}
-    onGenreTabClick={() => {}}
-    getMovieGenre={() => {}}
-  />).toJSON();
+    clickOnTab={() => {}}
+  />, {
+    createNodeMock() {
+      return {};
+    }
+  }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

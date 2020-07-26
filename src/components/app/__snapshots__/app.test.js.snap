@@ -161,7 +161,7 @@ exports[`Render App 1`] = `
             href="#"
             onClick={[Function]}
           >
-            All genres
+            Drama
           </a>
         </li>
         <li
@@ -172,7 +172,7 @@ exports[`Render App 1`] = `
             href="#"
             onClick={[Function]}
           >
-            drama
+            Anime
           </a>
         </li>
       </ul>
