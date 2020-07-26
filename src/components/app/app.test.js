@@ -6,14 +6,6 @@ import {Provider} from "react-redux";
 
 const mockStore = configureStore([]);
 
-
-const Movie = {
-  movieName: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: `2014`
-};
-
-
 const movies = [
   {
     id: 6,
