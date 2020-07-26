@@ -154,14 +154,14 @@ exports[`Render WelcomeScreen 1`] = `
         className="catalog__genres-list"
       >
         <li
-          className="catalog__genres-item + "
+          className="catalog__genres-item + catalog__genres-item--active"
         >
           <a
             className="catalog__genres-link"
             href="#"
             onClick={[Function]}
           >
-            All genres
+            Drama
           </a>
         </li>
         <li
@@ -172,7 +172,7 @@ exports[`Render WelcomeScreen 1`] = `
             href="#"
             onClick={[Function]}
           >
-            drama
+            Anime
           </a>
         </li>
       </ul>

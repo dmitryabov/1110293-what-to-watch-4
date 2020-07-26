@@ -5,29 +5,21 @@ import {Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import {getMovieGenre} from "../../redux/reducer.js";
+import {withMoviePage} from "../../hocs/with-movie-page/with-movie-page.js";
+import {withWelcomeScreen} from "../../hocs/with-welcome-screen/with-welcome-screen.js";
+
+
+const WithMoviePageContainer = withMoviePage(MoviePage);
+const WithWelcomeScreenContainer = withWelcomeScreen(WelcomeScreen);
 
 
 class App extends PureComponent {
   constructor(props) {
     super(props);
 
-    this._handleMovieImgClick = this._handleMovieImgClick.bind(this);
-    this._handleMovieTitleClick = this._handleMovieTitleClick.bind(this);
     this._handleGenreChanged = this._handleGenreChanged.bind(this);
     this._renderApp = this._renderApp.bind(this);
 
-    this.state = {
-      page: -1,
-      currentMovie: 1
-    };
-  }
-
-  _handleMovieImgClick(cardId) {
-    this.setState({page: 1, currentMovie: cardId});
-  }
-
-  _handleMovieTitleClick(cardId) {
-    this.setState({page: 1, currentMovie: cardId});
   }
 
   _handleGenreChanged(genre) {
@@ -35,34 +27,36 @@ class App extends PureComponent {
   }
 
   _renderApp() {
-    const {movies, comments, activeGenre} = this.props;
-    const {page} = this.state;
+    const {movies, comments, activeGenre, genres, onMovieTitleClick, onMovieImgClick, currentMovie} = this.props;
+    const {page} = this.props;
     if (page <= -1) {
       return (
-        <WelcomeScreen
+        <WithWelcomeScreenContainer
           movies={movies}
-          onMovieImgClick={this._handleMovieImgClick}
-          onMovieTitleClick={this._handleMovieTitleClick}
+          onMovieImgClick={onMovieImgClick}
+          onMovieTitleClick={onMovieTitleClick}
           getMovieGenre={this._handleGenreChanged}
           activeGenre={activeGenre}
+          genres={genres}
         />
       );
     } else if (page >= 0) {
-      return <MoviePage movie={movies.find((mov) => mov.id === this.state.currentMovie)}
+      return <WithMoviePageContainer movie={movies.find((mov) => mov.id === currentMovie)}
         movies={movies}
         comments={comments}
-        onMovieImgClick={this._handleMovieImgClick}
-        onMovieTitleClick={this._handleMovieTitleClick}/>;
+        onMovieImgClick={onMovieImgClick}
+        onMovieTitleClick={onMovieTitleClick}/>;
     }
     return null;
   }
 
 
   render() {
+    const {movies, currentMovie} = this.props;
     return (
       <BrowserRouter>
         <Route exact path="/" render={() => this._renderApp()}/>
-        <Route path="/movie-page/:id?" render={() => <MoviePage movies={this.props.movies[this.state.currentMovie]}/>}/>
+        <Route path="/movie-page/:id?" render={() => <WithMoviePageContainer movies={movies[currentMovie]}/>}/>
       </BrowserRouter>
     );
   }
@@ -99,7 +93,12 @@ App.propTypes = {
       })
   ).isRequired,
   getMovieGenre: PropTypes.func.isRequired,
-  activeGenre: PropTypes.string.isRequired,
+  activeGenre: PropTypes.string,
+  genres: PropTypes.array.isRequired,
+  onMovieTitleClick: PropTypes.func.isRequired,
+  onMovieImgClick: PropTypes.func.isRequired,
+  currentMovie: PropTypes.number.isRequired,
+  page: PropTypes.number
 };
 
 
@@ -108,6 +107,7 @@ const mapStateToProps = (state) => {
     movies: state.movies,
     comments: state.comments,
     activeGenre: state.genre,
+    genres: state.genres
   };
 };
 

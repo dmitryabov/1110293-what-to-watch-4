@@ -43,17 +43,25 @@ const movies = [{
 }
 ];
 
+const movieGenres = [
+  `Drama`,
+  `Anime`
+];
+
 
 it(`Render WelcomeScreen`, () => {
 
   const tree = renderer
   .create(<WelcomeScreen
     movieName={Movie.movieName}
-    genre={Movie.genre}
+    genres={movieGenres}
     year={Movie.year}
     movies={movies}
     onMovieImgClick={()=>{}}
     onMovieTitleClick={()=>{}}
+    activeGenre={`Drama`}
+    clickOnButton={()=> {}}
+    countMovie={1}
   />).toJSON();
 
   expect(tree).toMatchSnapshot();

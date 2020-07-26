@@ -1,6 +1,10 @@
 import React, {PureComponent} from "react";
 import PropTypes from "prop-types";
 import MovieCard from "../../movie-card/movie-card.jsx";
+import {withMovieCard} from "../../../hocs/with-movie-card/with-movie-card.js";
+
+
+const WithMovieCard = withMovieCard(MovieCard);
 
 
 class MoviePageContent extends PureComponent {
@@ -20,7 +24,7 @@ class MoviePageContent extends PureComponent {
     return (
       <React.Fragment>
         {filtredMovies.map((movie, i) =>
-          <MovieCard
+          <WithMovieCard
             key={movie.name + i}
             movie={movie}
             onMovieImgClick={onMovieImgClick}

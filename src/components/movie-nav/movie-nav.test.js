@@ -11,7 +11,7 @@ it(`Render MovieNav`, () => {
   .create(<MovieNav
     movieTabs={movieTabs}
     activeTab= {`Overview`}
-    mouseLeaveCard={() => {}}
+    clickOnTab={() => {}}
 
   />, {
     createNodeMock: () => {

@@ -1,87 +1,64 @@
-import React, {PureComponent} from "react";
+import React from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
 
 
-class MovieCard extends PureComponent {
-  constructor(props) {
-    super(props);
+const MovieCard = (props) => {
 
-    this.state = {
-      isPlaying: false
-    };
+  const {movie, onMovieImgClick, onMouseEnterCard, onMouseLeaveCard, onMovieTitleClick,
+    onMouseEnterCardHandler, onMouseLeaveCardHandler, isPlay} = props;
+  const isPlaying = isPlay;
+  const {video, id, poster, name} = movie;
 
-    this._onMouseEnterCardHandler = this._onMouseEnterCardHandler.bind(this);
-    this._onMouseLeaveCardHandler = this._onMouseLeaveCardHandler.bind(this);
-  }
+  const mouseEnterCard = () => {
+    onMouseEnterCard(id);
+    onMouseEnterCardHandler();
+  };
 
-  _onMouseEnterCardHandler() {
-    this.setState({
-      isPlaying: true
-    });
-  }
+  const mouseLeaveCard = () => {
+    onMouseLeaveCard();
+    onMouseLeaveCardHandler();
+  };
 
-  _onMouseLeaveCardHandler() {
-    this.setState({
-      isPlaying: false
-    });
-  }
+  const onImgCardClick = () => {
+    onMovieImgClick(id);
+  };
 
-
-  render() {
-    const {movie, onMovieImgClick, onMouseEnterCard, onMouseLeaveCard, onMovieTitleClick} = this.props;
-    const {isPlaying} = this.state;
-    const {video, id, poster, name} = movie;
-
-    const mouseEnterCard = () => {
-      onMouseEnterCard(id);
-      this._onMouseEnterCardHandler();
-    };
-
-    const mouseLeaveCard = () => {
-      onMouseLeaveCard();
-      this._onMouseLeaveCardHandler();
-    };
-
-    const onImgCardClick = () => {
-      onMovieImgClick(id);
-    };
-
-    const onTitleCardClick = (evt)=>{
-      evt.preventDefault();
-      onMovieTitleClick(id);
-    };
+  const onTitleCardClick = (evt)=>{
+    evt.preventDefault();
+    onMovieTitleClick(id);
+  };
 
 
-    return (
-      <React.Fragment>
-        <article className="small-movie-card catalog__movies-card"
-          id={id}
-          onMouseEnter={mouseEnterCard}
-          onMouseLeave={mouseLeaveCard}
+  return (
+    <React.Fragment>
+      <article className="small-movie-card catalog__movies-card"
+        id={id}
+        onMouseEnter={mouseEnterCard}
+        onMouseLeave={mouseLeaveCard}
+      >
+
+        <div className="small-movie-card__image"
+          onClick={onImgCardClick}
         >
+          <VideoPlayer
+            src={video}
+            isPlaying={isPlaying}
+            poster={poster}
+          />
 
-          <div className="small-movie-card__image"
-            onClick={onImgCardClick}
-          >
-            <VideoPlayer
-              src={video}
-              isPlaying={isPlaying}
-              poster={poster}
-            />
+        </div>
+        <h3 className="small-movie-card__title">
+          <a onClick={onTitleCardClick}
+            className="small-movie-card__link"
+            href="movie-page.html">{name}
+          </a>
+        </h3>
+      </article>
+    </React.Fragment>
+  );
+};
 
-          </div>
-          <h3 className="small-movie-card__title">
-            <a onClick={onTitleCardClick}
-              className="small-movie-card__link"
-              href="movie-page.html">{name}
-            </a>
-          </h3>
-        </article>
-      </React.Fragment>
-    );
-  }
-}
 
 MovieCard.propTypes = {
   movie:
@@ -103,6 +80,9 @@ MovieCard.propTypes = {
   onMouseEnterCard: PropTypes.func.isRequired,
   onMouseLeaveCard: PropTypes.func.isRequired,
   onMovieTitleClick: PropTypes.func.isRequired,
+  onMouseEnterCardHandler: PropTypes.func.isRequired,
+  onMouseLeaveCardHandler: PropTypes.func,
+  isPlay: PropTypes.bool.isRequired,
 };
 
 export default MovieCard;

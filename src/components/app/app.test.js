@@ -6,14 +6,6 @@ import {Provider} from "react-redux";
 
 const mockStore = configureStore([]);
 
-
-const Movie = {
-  movieName: `The Grand Budapest Hotel`,
-  genre: `Drama`,
-  year: `2014`
-};
-
-
 const movies = [
   {
     id: 6,
@@ -72,22 +64,37 @@ const comments = [
   },
 ];
 
+const genres = [
+  `Drama`,
+  `Anime`
+];
+const activeGenre = `Drama`;
+
+
 it(`Render App`, () => {
   const store = mockStore({
     movies,
-    comments
+    comments,
+    activeGenre,
+    genres,
   });
   const tree = renderer
   .create(
       <Provider store={store}>
         <App
-          movieName={Movie.movieName}
-          genre={Movie.genre}
-          year={Movie.year}
           movies={movies}
           comments={comments}
-        /></Provider>
-  ).toJSON();
+          activeGenre={`activeGenre`}
+          genres={genres}
+          onMovieImgClick={() => {}}
+          onMovieTitleClick={() => {}}
+          currentMovie={2}
+        />
+      </Provider>, {
+        createNodeMock() {
+          return {};
+        }
+      }).toJSON();
 
   expect(tree).toMatchSnapshot();
 });

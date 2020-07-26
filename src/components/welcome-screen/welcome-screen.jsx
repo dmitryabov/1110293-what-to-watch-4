@@ -3,6 +3,10 @@ import PropTypes from "prop-types";
 import MovieList from "../movie-list/movie-list.jsx";
 import GenreList from "../genre-list/genre-list.jsx";
 import CatalogButton from "../catalog-button/catalog-button.jsx";
+import {withMovieCard} from "../../hocs/with-movie-card/with-movie-card.js";
+
+
+const WithMovieCardContainer = withMovieCard(MovieList);
 
 
 const Movie = {
@@ -15,26 +19,9 @@ const Movie = {
 class WelcomeScreen extends PureComponent {
   constructor(props) {
     super(props);
-    this.state = {
-      activeTab: `All genres`,
-      countMovie: 8
-    };
-    this._handlerClickOnTab = this._handlerClickOnTab.bind(this);
+
     this._onGenreChanged = this._onGenreChanged.bind(this);
-    this._handlerClickOnButton = this._handlerClickOnButton.bind(this);
-  }
 
-
-  _handlerClickOnTab(tab) {
-    this.setState({
-      activeTab: tab
-    });
-  }
-
-  _handlerClickOnButton() {
-    this.setState({
-      countMovie: this.state.countMovie + 8
-    });
   }
 
   _onGenreChanged(tab) {
@@ -42,15 +29,9 @@ class WelcomeScreen extends PureComponent {
   }
 
   render() {
-    const {movies, onMovieImgClick, onMovieTitleClick} = this.props;
-    const arr = [`All genres`];
-    movies.map((mov) => {
-      arr.push(mov.genre);
-    });
+    const {movies, onMovieImgClick, onMovieTitleClick, genres, activeGenre, clickOnButton, countMovie} = this.props;
 
-    const movieGenreTabs = Array.from(new Set(arr));
-    const activeTab = this.props.activeGenre;
-    const filteredMovie = activeTab === `All genres` ? movies : movies.filter((movie) => movie.genre === activeTab);
+    const filteredMovie = activeGenre === `All genres` ? movies : movies.filter((movie) => movie.genre === activeGenre);
 
 
     return (<div>
@@ -114,18 +95,17 @@ class WelcomeScreen extends PureComponent {
         <section className="catalog">
           <h2 className="catalog__title visually-hidden">Catalog</h2>
           <GenreList
-            movieGenreTabs={movieGenreTabs}
-            activeTab={activeTab}
-            onGenreTabClick={this._handlerClickOnTab}
-            getMovieGenre={this._onGenreChanged}
+            movieTabs={genres}
+            activeTab={activeGenre}
+            clickOnTab={this._onGenreChanged}
           />
           <div className="catalog__movies-list">
-            <MovieList movies={filteredMovie.slice(0, this.state.countMovie)}
+            <WithMovieCardContainer movies={filteredMovie.slice(0, countMovie)}
               onMovieImgClick={onMovieImgClick}
               onMovieTitleClick={onMovieTitleClick}/>
           </div>
           <div className="catalog__more">
-            { filteredMovie.length <= this.state.countMovie ? `` : <CatalogButton clickOnButton={this._handlerClickOnButton}/>}
+            { filteredMovie.length <= countMovie ? `` : <CatalogButton clickOnButton={clickOnButton}/>}
           </div>
         </section>
 
@@ -166,9 +146,13 @@ WelcomeScreen.propTypes = {
       })
   ).isRequired,
   onMovieImgClick: PropTypes.func.isRequired,
-  activeGenre: PropTypes.string.isRequired,
+  activeGenre: PropTypes.string,
   onMovieTitleClick: PropTypes.func.isRequired,
   getMovieGenre: PropTypes.func,
+  genres: PropTypes.arrayOf(PropTypes.string),
+  clickOnButton: PropTypes.func.isRequired,
+  countMovie: PropTypes.number.isRequired
 };
+
 
 export default WelcomeScreen;
