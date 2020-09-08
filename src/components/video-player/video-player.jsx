@@ -36,13 +36,14 @@ class VideoPlayer extends PureComponent {
 
 
   render() {
-    const {src, poster} = this.props;
+    const {src, poster, widthPlayer, heightPlayer, playerControl = false} = this.props;
 
     return (
       <video
+        controls = {playerControl}
         preload="none"
-        width="280"
-        height="175"
+        width={widthPlayer}
+        height={heightPlayer}
         loop={true}
         autoPlay={false}
         src={src}
@@ -58,7 +59,10 @@ VideoPlayer.propTypes = {
 
   src: PropTypes.string.isRequired,
   isPlaying: PropTypes.bool.isRequired,
+  playerControl: PropTypes.bool,
   poster: PropTypes.string.isRequired,
+  widthPlayer: PropTypes.string.isRequired,
+  heightPlayer: PropTypes.string.isRequired,
 
 };
 

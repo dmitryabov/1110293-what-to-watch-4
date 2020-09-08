@@ -29,7 +29,6 @@ const MovieCard = (props) => {
     onMovieTitleClick(id);
   };
 
-
   return (
     <React.Fragment>
       <article className="small-movie-card catalog__movies-card"
@@ -45,6 +44,8 @@ const MovieCard = (props) => {
             src={video}
             isPlaying={isPlaying}
             poster={poster}
+            widthPlayer={`280`}
+            heightPlayer={`175`}
           />
 
         </div>
