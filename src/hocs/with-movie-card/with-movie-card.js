@@ -5,7 +5,6 @@ export const withMovieCard = (Component) => {
   class MovieCardComponent extends PureComponent {
     constructor(props) {
       super(props);
-
       this.state = {
         isPlaying: false
       };
