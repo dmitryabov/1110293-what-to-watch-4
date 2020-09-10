@@ -49,8 +49,8 @@ const MoviePageOverview = (props) => {
 
 MoviePageOverview.propTypes = {
   movies: PropTypes.shape({
-    rating: PropTypes.string.isRequired,
-    count: PropTypes.string.isRequired,
+    rating: PropTypes.number.isRequired,
+    count: PropTypes.number.isRequired,
     description: PropTypes.string.isRequired,
     director: PropTypes.string.isRequired,
     starring: PropTypes.arrayOf(PropTypes.string

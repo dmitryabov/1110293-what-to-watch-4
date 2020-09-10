@@ -21,7 +21,6 @@ const getMovieGenres = (arrayOfMovies) => {
 
 const initialState = {
   genres: getMovieGenres(movies),
-  movies,
   comments,
   genre: ACTIVE_TYPE_ALL_GENRE
 };
@@ -32,7 +31,6 @@ const genreReduser = (state = initialState, action) => {
     case GENRE: {
       return extend(state, {
         genre: action.genre,
-        movies,
       });
     }
     default:

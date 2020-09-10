@@ -5,6 +5,7 @@ import {Route, BrowserRouter} from "react-router-dom";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import {getMovieGenre} from "../../redux/reducer.js";
+import {getMovies} from "../../redux/movies/movies-reducer.js";
 import {withMoviePage} from "../../hocs/with-movie-page/with-movie-page.js";
 import {withWelcomeScreen} from "../../hocs/with-welcome-screen/with-welcome-screen.js";
 
@@ -22,8 +23,24 @@ class App extends PureComponent {
 
   }
 
+  componentDidMount() {
+    this.props.getMovies();
+  }
+
+
+  _getMovieGenres(arrayOfMovies) {
+    const typeGenres = [`All genres`];
+
+    arrayOfMovies.forEach((movie) => {
+      typeGenres.push(movie.genre);
+    });
+
+    return Array.from(new Set(typeGenres));
+  }
+
   _handleGenreChanged(genre) {
     this.props.getMovieGenre(genre);
+    this.props.getMovies();
   }
 
   _renderApp() {
@@ -70,9 +87,9 @@ App.propTypes = {
         poster: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
-        released: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired,
-        count: PropTypes.string.isRequired,
+        released: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired,
+        count: PropTypes.number.isRequired,
         description: PropTypes.string.isRequired,
         director: PropTypes.string.isRequired,
         starring: PropTypes.arrayOf(PropTypes.string),
@@ -98,20 +115,21 @@ App.propTypes = {
   onMovieTitleClick: PropTypes.func.isRequired,
   onMovieImgClick: PropTypes.func.isRequired,
   currentMovie: PropTypes.number.isRequired,
-  page: PropTypes.number
+  page: PropTypes.number,
+  getMovies: PropTypes.func.isRequired,
 };
 
 
 const mapStateToProps = (state) => {
   return {
-    movies: state.movies,
-    comments: state.comments,
-    activeGenre: state.genre,
-    genres: state.genres
+    movies: state.moviesReduser.movies,
+    comments: state.genreReduser.comments,
+    activeGenre: state.genreReduser.genre,
+    genres: state.genreReduser.genres
   };
 };
 
 
-const AppContainer = connect(mapStateToProps, {getMovieGenre})(App);
+const AppContainer = connect(mapStateToProps, {getMovieGenre, getMovies})(App);
 
 export default AppContainer;
