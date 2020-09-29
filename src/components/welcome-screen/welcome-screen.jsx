@@ -5,6 +5,7 @@ import GenreList from "../genre-list/genre-list.jsx";
 import CatalogButton from "../catalog-button/catalog-button.jsx";
 import {withMovieCard} from "../../hocs/with-movie-card/with-movie-card.js";
 import Player from "../player/player.jsx";
+import {Link} from "react-router-dom";
 
 
 const WithMovieCardContainer = withMovieCard(MovieList);
@@ -55,11 +56,11 @@ class WelcomeScreen extends PureComponent {
 
           <header className="page-header movie-card__head">
             <div className="logo">
-              <a className="logo__link">
+              <Link to="/" className="logo__link">
                 <span className="logo__letter logo__letter--1">W</span>
                 <span className="logo__letter logo__letter--2">T</span>
                 <span className="logo__letter logo__letter--3">W</span>
-              </a>
+              </Link>
             </div>
 
             <div className="user-block">
@@ -149,9 +150,9 @@ WelcomeScreen.propTypes = {
         poster: PropTypes.string.isRequired,
         name: PropTypes.string.isRequired,
         genre: PropTypes.string.isRequired,
-        released: PropTypes.string.isRequired,
-        rating: PropTypes.string.isRequired,
-        count: PropTypes.string.isRequired,
+        released: PropTypes.number.isRequired,
+        rating: PropTypes.number.isRequired,
+        count: PropTypes.number.isRequired,
         description: PropTypes.string.isRequired,
         director: PropTypes.string.isRequired,
         starring: PropTypes.arrayOf(PropTypes.string),
