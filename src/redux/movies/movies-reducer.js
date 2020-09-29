@@ -1,7 +1,7 @@
-import {movieAPI} from "../../api/api.js";
 
+export const SET_MOVIES = `SET_MOVIES`;
+export const REQUEST_MOVIES = `REQUEST_MOVIES`;
 
-const MOVIES = `MOVIES`;
 
 const extend = (a, b) => {
   return Object.assign({}, a, b);
@@ -33,7 +33,7 @@ const initialState = {
 
 const moviesReduser = (state = initialState, action) => {
   switch (action.type) {
-    case MOVIES: {
+    case SET_MOVIES: {
       return extend(state, {
         movies: action.movies,
       });
@@ -45,15 +45,11 @@ const moviesReduser = (state = initialState, action) => {
 
 
 export const setMovies = (movies) => {
-  return {type: MOVIES, movies};
+  return {type: SET_MOVIES, movies};
 };
 
 export const getMovies = () => {
-  return (dispatch) => {
-    movieAPI.getMovies().then((data) => {
-      dispatch(setMovies(data));
-    });
-  };
+  return {type: REQUEST_MOVIES};
 };
 
 

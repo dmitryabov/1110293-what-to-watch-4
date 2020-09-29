@@ -1,6 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 import VideoPlayer from "../video-player/video-player.jsx";
+import {Link} from "react-router-dom";
 
 
 const MovieCard = (props) => {
@@ -24,8 +25,7 @@ const MovieCard = (props) => {
     onMovieImgClick(id);
   };
 
-  const onTitleCardClick = (evt)=>{
-    evt.preventDefault();
+  const onTitleCardClick = ()=>{
     onMovieTitleClick(id);
   };
 
@@ -41,6 +41,7 @@ const MovieCard = (props) => {
           onClick={onImgCardClick}
         >
           <VideoPlayer
+            id={id}
             src={video}
             isPlaying={isPlaying}
             poster={poster}
@@ -50,10 +51,7 @@ const MovieCard = (props) => {
 
         </div>
         <h3 className="small-movie-card__title">
-          <a onClick={onTitleCardClick}
-            className="small-movie-card__link"
-            href="movie-page.html">{name}
-          </a>
+          <Link to={`/movie/${id}`} className="small-movie-card__link" onClick={onTitleCardClick}>{name}</Link>
         </h3>
       </article>
     </React.Fragment>

@@ -6,6 +6,7 @@ import MoviePageOverview from "../movie-nav/movie-page-overview/movie-page-overv
 import MoviePageReviews from "../movie-nav/movie-page-reviews/movie-page-reviews.jsx";
 import MoviePageContent from "../movie-nav/movie-page-content/movie-page-content.jsx";
 import Player from "../player/player.jsx";
+import {Link} from "react-router-dom";
 
 
 const movieTabType = {
@@ -44,11 +45,11 @@ class MoviePage extends PureComponent {
               <h1 className="visually-hidden">WTW</h1>
               <header className="page-header movie-card__head">
                 <div className="logo">
-                  <a href="main.html" className="logo__link">
+                  <Link to="/" className="logo__link">
                     <span className="logo__letter logo__letter--1">W</span>
                     <span className="logo__letter logo__letter--2">T</span>
                     <span className="logo__letter logo__letter--3">W</span>
-                  </a>
+                  </Link>
                 </div>
                 <div className="user-block">
                   <div className="user-block__avatar">

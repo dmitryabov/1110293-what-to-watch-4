@@ -1,7 +1,7 @@
 import React, {PureComponent} from "react";
 import WelcomeScreen from "../welcome-screen/welcome-screen.jsx";
 import PropTypes from "prop-types";
-import {Route, BrowserRouter} from "react-router-dom";
+import {Route, BrowserRouter, Switch} from "react-router-dom";
 import MoviePage from "../movie-page/movie-page.jsx";
 import {connect} from "react-redux";
 import {getMovieGenre} from "../../redux/reducer.js";
@@ -19,8 +19,6 @@ class App extends PureComponent {
     super(props);
 
     this._handleGenreChanged = this._handleGenreChanged.bind(this);
-    this._renderApp = this._renderApp.bind(this);
-
   }
 
   componentDidMount() {
@@ -43,41 +41,42 @@ class App extends PureComponent {
     this.props.getMovies();
   }
 
-  _renderApp() {
-    const {movies, comments, activeGenre, genres, onMovieTitleClick, onMovieImgClick, currentMovie} = this.props;
-    const {page} = this.props;
-    if (page <= -1) {
-      return (
-        <WithWelcomeScreenContainer
-          movies={movies}
-          onMovieImgClick={onMovieImgClick}
-          onMovieTitleClick={onMovieTitleClick}
-          getMovieGenre={this._handleGenreChanged}
-          activeGenre={activeGenre}
-          genres={genres}
-        />
-      );
-    } else if (page >= 0) {
-      return <WithMoviePageContainer movie={movies.find((mov) => mov.id === currentMovie)}
-        movies={movies}
-        comments={comments}
-        onMovieImgClick={onMovieImgClick}
-        onMovieTitleClick={onMovieTitleClick}/>;
-    }
-    return null;
-  }
-
 
   render() {
-    const {movies, currentMovie} = this.props;
+    const {movies, currentMovie, onMovieImgClick, onMovieTitleClick, activeGenre, genres, comments} = this.props;
     return (
       <BrowserRouter>
-        <Route exact path="/" render={() => this._renderApp()}/>
-        <Route path="/movie-page/:id?" render={() => <WithMoviePageContainer movies={movies[currentMovie]}/>}/>
+        <Switch>
+          <Route exact path="/"
+            render={() => {
+              return (
+                <WithWelcomeScreenContainer
+                  movies={movies}
+                  onMovieImgClick={onMovieImgClick}
+                  onMovieTitleClick={onMovieTitleClick}
+                  getMovieGenre={this._handleGenreChanged}
+                  activeGenre={activeGenre}
+                  genres={genres}
+                />
+              );
+            }}/>
+          <Route exact path="/movie/:id"
+            render={() => {
+              return (
+                <WithMoviePageContainer movie={movies.find((mov) => mov.id === currentMovie)}
+                  movies={movies}
+                  comments={comments}
+                  onMovieImgClick={onMovieImgClick}
+                  onMovieTitleClick={onMovieTitleClick}
+                />
+              );
+            }}/>
+        </Switch>
       </BrowserRouter>
     );
   }
 }
+
 
 App.propTypes = {
   movies: PropTypes.arrayOf(

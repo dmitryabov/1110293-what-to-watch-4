@@ -5,7 +5,7 @@ import {withMovieList} from "../../hocs/with-movie-list/with-movie-list.js";
 import {withMovieCard} from "../../hocs/with-movie-card/with-movie-card.js";
 
 
-const WithMovieCar = withMovieCard(MovieCard);
+const WithMovieCard = withMovieCard(MovieCard);
 
 const MovieList = (props) => {
 
@@ -14,7 +14,7 @@ const MovieList = (props) => {
   return (
     <React.Fragment>
       {movies.map((movie, i) =>
-        <WithMovieCar
+        <WithMovieCard
           key={movie.name + i}
           movie={movie}
           onMovieImgClick={onMovieImgClick}
